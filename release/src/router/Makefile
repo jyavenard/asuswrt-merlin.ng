@@ -3475,7 +3475,7 @@ else
 endif
 
 rp-pppoe: pppd rp-pppoe/src/stamp-h1
-	@$(MAKE) -C rp-pppoe/src pppoe-relay pppoe-server rp-pppoe.so
+	@$(MAKE) -C rp-pppoe/src pppoe-relay pppoe-server pppoe rp-pppoe.so
 
 rp-pppoe-clean:
 	-@$(MAKE) -C rp-pppoe/src clean
@@ -3488,6 +3488,8 @@ rp-pppoe-install: rp-pppoe
 	$(STRIP) $(INSTALLDIR)/rp-pppoe/usr/sbin/pppoe-relay
 	install -D rp-pppoe/src/pppoe-server $(INSTALLDIR)/rp-pppoe/usr/sbin/pppoe-server
 	$(STRIP) $(INSTALLDIR)/rp-pppoe/usr/sbin/pppoe-server
+	install -D rp-pppoe/src/pppoe $(INSTALLDIR)/rp-pppoe/usr/sbin/pppoe
+	$(STRIP) $(INSTALLDIR)/rp-pppoe/usr/sbin/pppoe
 
 rp-l2tp/stamp-h1: kernel_header
 	cd rp-l2tp && CFLAGS="-O2 -Wall $(EXTRACFLAGS) -idirafter $(KDIR)/include $(if $(RTCONFIG_VPNC), -DRTCONFIG_VPNC,)" \
